@@ -1,0 +1,51 @@
+java
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/sim")
+public class SimActivationController {
+
+    @PostMapping("/activate")
+    public ResponseEntity<String> activateSim(@RequestBody SimRequest request) {
+        String iccid = request.getIccid();
+        String customerEmail = request.getCustomerEmail();
+
+        // Logic to send a POST request to the actuator
+        // You can use RestTemplate or WebClient to perform the HTTP call
+
+        // Example of processing the response
+        boolean success = callActuator(iccid);
+        return ResponseEntity.ok(success ? "Activation successful" : "Activation failed");
+    }
+
+    private boolean callActuator(String iccid) {
+        // Logic to call the actuator service
+        // Return true if successful, false otherwise
+        return true; // Placeholder
+    }
+
+}
+
+class SimRequest {
+    private String iccid;
+    private String customerEmail;
+
+    // Getters and setters
+    public String getIccid() {
+        return iccid;
+    }
+
+    public void setIccid(String iccid) {
+        this.iccid = iccid;
+    }
+
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
+    }
+}
